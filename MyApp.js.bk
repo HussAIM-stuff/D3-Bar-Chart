@@ -1,0 +1,53 @@
+console.log("Starting MyApp");
+
+const w = 500;
+const h = 500;
+const svg = d3.select("chart")
+              .append("svg")
+              .attr("width", w)
+              .attr("height", h);
+// const xScale = d3.scaleLinear()
+//                  .domain([1950,2000])
+//                  .range([1900,2200]);
+
+svg.append("g")
+       .attr("id","x-axis")
+       .attr("transform", "translate(0," + h + ")")
+
+let url = 'https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/GDP-data.json';
+var dataset;
+fetch(url)
+.then(res => res.json())
+.then((out) => {
+  dataset = out;
+  console.log("from_date: "+out.from_date);
+  console.log("to_date: "+out.to_date);
+  console.log("frequency: "+out.frequency);
+  console.log("name: "+out.name);
+  })
+.catch(err => { throw err });
+
+/*
+
+{errors: {…}, id: 120140, source_name: "Federal Reserve Economic Data", source_code: "FRED", code: "GDP", …}
+code: "GDP"
+column_names: (2) ["DATE", "VALUE"]
+data: (275) [Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), …]
+description: "Units: Billions of Dollars↵Seasonal Adjustment: Seasonally Adjusted Annual Rate↵Notes: A Guide to the National Income and Product Accounts of the United States (NIPA) - (http://www.bea.gov/national/pdf/nipaguid.pdf)"
+display_url: "http://research.stlouisfed.org/fred2/data/GDP.txt"
+errors: {}
+frequency: "quarterly"
+from_date: "1947-01-01"
+id: 120140
+name: "Gross Domestic Product, 1 Decimal"
+premium: false
+private: false
+source_code: "FRED"
+source_name: "Federal Reserve Economic Data"
+to_date: "2015-07-01"
+type: null
+updated_at: "2015-12-14T20:00:28.561Z"
+urlize_name: "Gross-Domestic-Product-1-Decimal"
+__proto__:
+constructor: ƒ
+*/
