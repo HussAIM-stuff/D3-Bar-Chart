@@ -1,13 +1,8 @@
-/* global d3 */
-/* eslint-disable max-len */
-
-// eslint-disable-next-line no-unused-vars
 //  <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
 
 
 const projectName = 'bar-chart';
 
-// coded by @Christian-Paul
 
 var width = 800,
   height = 400,
